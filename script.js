@@ -26,6 +26,7 @@ const MAX_HEIGHT = 4320;
 const GRAVITY = 0.9; // Acceleration in px/s
 let simSpeed = 1;
 
+
 function getDefaultScaleFactor() {
 	if (IS_MOBILE) return 0.9;
 	if (IS_HEADER) return 0.75;
@@ -116,7 +117,7 @@ const store = {
 	state: {
 		// will be unpaused in init()
 		paused: true,
-		soundEnabled: false,
+		soundEnabled: true ,
 		menuOpen: false,
 		openHelpTopic: null,
 		fullscreen: isFullscreen(),
@@ -842,9 +843,9 @@ function init() {
 	
 	// initial render
 	renderApp(store.state);
-	
 	// Apply initial config
 	configDidUpdate();
+
 }
 
 
@@ -2292,3 +2293,7 @@ if (IS_HEADER) {
 		);
 	}, 0);
 }
+document.addEventListener("click", function enableSound() {
+    toggleSound(true); // Bật âm thanh khi nhấp chuột lần đầu
+    document.removeEventListener("click", enableSound); // Chỉ chạy một lần
+});
